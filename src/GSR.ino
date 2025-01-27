@@ -106,22 +106,15 @@ class OverrideGSR : public WatchyGSR {
     };
 
     void InsertDrawWatchStyle(uint8_t StyleID){
-       uint16_t w, Width, Height, Ind;
-    int16_t X, Y;
-    X = display.width()/2;
-    Y = display.height()/2;
-
-    // display.getTextBounds(dData, Left, Bottom, &X, &Y, &Width, &Height);
+      int16_t X, Y;
+      X = display.width()/2;
+      Y = display.height()/2;
 
       if (StyleID == MyStyle){
         if (SafeToDraw()){
             display.drawCircle(X, Y, (display.width()/2)-1, ForeColor());
             
-            
-            uint8_t hour = WatchTime.Local.Hour;
-            hour = hour % 12;
-
-            uint16_t hourAngle = ((360 * hour) / 12);
+            uint16_t hourAngle = ((360 * WatchTime.Local.Hour%12) / 12);
             uint16_t minuteAngle = ((360 * WatchTime.Local.Minute) / 60);
             
             drawHand(X, Y, hourAngle, 50);
@@ -136,7 +129,7 @@ class OverrideGSR : public WatchyGSR {
         float rad = adjustedAngle * (PI / 180);
         int x = centerX + cos(rad) * length;
         int y = centerY - sin(rad) * length;
-        display.drawLine(centerX, centerY, x, y, GxEPD_BLACK);
+        display.drawLine(centerX, centerY, x, y, ForeColor());
     }
 /*
     bool InsertHandlePressed(uint8_t SwitchNumber, bool &Haptic, bool &Refresh) {
