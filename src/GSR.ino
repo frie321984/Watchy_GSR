@@ -1,8 +1,10 @@
 #include "Watchy_GSR.h"
+#include "../Watchface Addons/WeatherIcons.h"
+#include "../Watchface Addons/Collections/Watchy Classics/WatchyClassicsAddOn.h"
 
 // Place all of your data and variables here.
 
-//RTC_DATA_ATTR uint8_t MyStyle;  // Remember RTC_DATA_ATTR for your variables so they don't get wiped on deep sleep.
+RTC_DATA_ATTR uint8_t MyStyle;  // Remember RTC_DATA_ATTR for your variables so they don't get wiped on deep sleep.
 
 
 class OverrideGSR : public WatchyGSR {
@@ -51,13 +53,11 @@ class OverrideGSR : public WatchyGSR {
 */
 
 // The next 3 functions allow you to add your own WatchFaces, there are examples that do work below.
-/*
-    void InsertAddWatchStyles(){
-      MyStyle = AddWatchStyle("Mine");
-    };
-*/
 
-/*
+    void InsertAddWatchStyles(){
+      MyStyle = AddWatchStyle("Analog");
+    };
+
     void InsertInitWatchStyle(uint8_t StyleID){
       if (StyleID == MyStyle){
           Design.Menu.Top = 72;
@@ -104,21 +104,40 @@ class OverrideGSR : public WatchyGSR {
           Design.Status.BATTy = 178;
       }
     };
-*/
 
-/*
     void InsertDrawWatchStyle(uint8_t StyleID){
+       uint16_t w, Width, Height, Ind;
+    int16_t X, Y;
+    X = display.width()/2;
+    Y = display.height()/2;
+
+    // display.getTextBounds(dData, Left, Bottom, &X, &Y, &Width, &Height);
+
       if (StyleID == MyStyle){
-            if (SafeToDraw()){
-                drawTime();
-                drawDay();
-                drawYear();
-            }
-            if (NoMenu()) drawDate();
+        if (SafeToDraw()){
+            display.drawCircle(X, Y, (display.width()/2)-1, ForeColor());
+            
+            
+            uint8_t hour = WatchTime.Local.Hour;
+            hour = hour % 12;
+
+            uint16_t hourAngle = ((360 * hour) / 12);
+            uint16_t minuteAngle = ((360 * WatchTime.Local.Minute) / 60);
+            
+            drawHand(X, Y, hourAngle, 50);
+            drawHand(X, Y, minuteAngle, 90);
+        }
       }
     };
-*/
 
+    void drawHand(int centerX, int centerY, uint16_t angle, int length)
+    {
+        float adjustedAngle = 90 - angle;
+        float rad = adjustedAngle * (PI / 180);
+        int x = centerX + cos(rad) * length;
+        int y = centerY - sin(rad) * length;
+        display.drawLine(centerX, centerY, x, y, GxEPD_BLACK);
+    }
 /*
     bool InsertHandlePressed(uint8_t SwitchNumber, bool &Haptic, bool &Refresh) {
       switch (SwitchNumber){
