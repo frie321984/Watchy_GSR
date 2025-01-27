@@ -112,16 +112,37 @@ class OverrideGSR : public WatchyGSR {
 
       if (StyleID == MyStyle){
         if (SafeToDraw()){
+          
+            /*drawMyText(X,5,"12");
+            drawMyText(display.height()-5,Y,"3");
+            drawMyText(X,display.width()-5,"6");
+            drawMyText(5,Y,"9");
+            */
             display.drawCircle(X, Y, (display.width()/2)-1, ForeColor());
             
-            uint16_t hourAngle = ((360 * WatchTime.Local.Hour%12) / 12);
+            uint16_t hourAngle = ((360 * (WatchTime.Local.Hour%12)) / 12);
             uint16_t minuteAngle = ((360 * WatchTime.Local.Minute) / 60);
             
             drawHand(X, Y, hourAngle, 50);
+            drawHand(X+1, Y+1, hourAngle, 50);
+
             drawHand(X, Y, minuteAngle, 90);
         }
       }
     };
+
+    void drawMyText(int16_t x, int16_t y, String dData){
+      uint16_t w, Width, Height, Ind;
+        int16_t X, Y;
+        
+        display.getTextBounds(dData, x, y, &X, &Y, &Width, &Height);
+        
+        display.setFont(Design.Face.DayFontSmall);
+        setFontColor(Design.Face.TimeColor);
+        display.setTextSize(2);
+        display.setCursor(x-(Width/2),y-(Height/2));
+        display.print(dData);
+    }
 
     void drawHand(int centerX, int centerY, uint16_t angle, int length)
     {
