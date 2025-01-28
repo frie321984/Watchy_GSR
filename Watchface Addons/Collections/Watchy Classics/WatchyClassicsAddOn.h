@@ -7621,8 +7621,8 @@ class WatchyClassicsAddOnClass : public WatchyGSR {
       WatchyClassicsAddOnBasicStyle = AddWatchStyle("Watchy Basic",this);
       WatchyClassicsAddOnSSegStyle = AddWatchStyle("Watchy 7SEG",this);
       WatchyClassicsAddOnDOSStyle = AddWatchStyle("Watchy DOS",this);
-      WatchyClassicsAddOnPokeStyle = AddWatchStyle("Watchy Pokemon",this);
-      WatchyClassicsAddOnStarryStyle = AddWatchStyle("Watchy Starry",this);
+      // WatchyClassicsAddOnPokeStyle = AddWatchStyle("Watchy Pokemon",this);
+      // WatchyClassicsAddOnStarryStyle = AddWatchStyle("Watchy Starry",this);
       WatchyClassicsAddOnTetrisStyle = AddWatchStyle("Watchy Tetris",this);
       WatchyClassicsAddOnMacStyle = AddWatchStyle("Watchy MacPaint",this);
       WatchyClassicsAddOnMarioStyle = AddWatchStyle("Watchy Mario",this);
