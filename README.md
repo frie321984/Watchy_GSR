@@ -45,3 +45,24 @@ V3:  For those with the 2024 V3 Watchy, see the file in the main folder about it
 
 To get this setup for compiling, you need to make a folder in your (Arduino) Stream folder or (PlatformIO) project folder, call it GSR, in there, download the "Starting Point.zip" and latest Release (Source Code) .zip from the Release folder above.
 Extract both "Starting Point.zip" and the latest release (Source Code .zip) into the GSR folder, this will ensure all the necessary files are there.  If you plan to download any AddOns, be sure to deposit those files into the same GSR folder.  Follow the instructions for including AddOns in the src folder's Compilation Instructions.
+
+## Compile with Platformio
+
+### In VSCode: 
+run in devcontainer 
+
+select your watchy-version in platformio environment selection
+
+set your watchy into bootload mode
+
+make your watchy writeable for the container. I just brute force it like this (ttyACM0 is my watchy):
+
+sudo chmod a+rw /dev/ttyACM0
+
+use platformio buttons to compile & upload the firmware to your watchy :)
+
+### Not VSCode
+
+start container by yourself using Dockerfile in .devcontainer and then use platformio CLI
+
+i have no experience here but I'm sure it's possible ;)
