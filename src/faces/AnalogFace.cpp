@@ -60,10 +60,6 @@ const unsigned char antique_background[] = {
 
 
 void AnalogFace::draw(uint8_t hour, uint8_t minute, GxEPD2_BW<GxEPD2_154_D67, GxEPD2_154_D67::HEIGHT>& display){
-    display.drawChar(50,50, 'x',    GxEPD_BLACK, GxEPD_WHITE, 1);
-    display.drawLine(0,0,200,200,GxEPD_BLACK);
-    display.drawLine(50,50,100,100,GxEPD_BLACK);
-
     int16_t X, Y;
     X = display.width()/2;
     Y = display.height()/2;
