@@ -63,6 +63,8 @@ use platformio buttons to compile & upload the firmware to your watchy :)
 
 ### Not VSCode
 
-start container by yourself using Dockerfile in .devcontainer and then use platformio CLI
+start container by yourself using Dockerfile in .devcontainer and then use platformio CLI:
 
-i have no experience here but I'm sure it's possible ;)
+Example for watchy v3:
+
+platformio run --environment watchy-v3
