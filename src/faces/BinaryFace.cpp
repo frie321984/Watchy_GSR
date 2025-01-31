@@ -16,8 +16,8 @@ void BinaryFace::draw(uint8_t hour, uint8_t minute, GxEPD2_BW<GxEPD2_154_D67, Gx
 
     // Zeile 1:
     int i = 0;
-    int valuesRow1[6] = {0, 8, 4, 2, 1, 0};
-    for (int j = 1; j < 5; ++j) {
+    int valuesRow1[6] = {0, 16, 8, 4, 2, 1};
+    for (int j = 1; j < 6; ++j) {
         // Berechne die Position
         int x = j * cellSize;
         if (valuesRow1[j]<10) x += 10;
@@ -30,8 +30,8 @@ void BinaryFace::draw(uint8_t hour, uint8_t minute, GxEPD2_BW<GxEPD2_154_D67, Gx
 
     i++;
     // Zeile 2: Stunden in binärer Form (4 Zellen, ganz links leer)
-    for (int j = 1; j < 5; ++j) {
-        int bit = (hour >> (3 - (j-1))) & 1; // Hole das j-te Bit der Stunden
+    for (int j = 1; j < 6; ++j) {
+        int bit = (hour >> (3 - j)) & 1; // Hole das j-te Bit der Stunden
         display.drawRect(j * cellSize, i*cellHeight, cellSize, cellSize, GxEPD_BLACK); // Rechteck zeichnen
         if (bit) {
             display.fillRect(j * cellSize, i*cellHeight, cellSize, cellSize, GxEPD_BLACK); // Fülle das Rechteck, wenn das Bit 1 ist
