@@ -74,12 +74,12 @@ class AnalogWatchface : public WatchyGSR {
     };
 
     void InsertDrawWatchStyle(uint8_t StyleID){
+      if (!SafeToDraw()){ return; }
       int16_t X, Y;
       X = display.width()/2;
       Y = display.height()/2;
 
       if (StyleID == MyStyle){
-        if (SafeToDraw()){
             display.drawBitmap(0, 0, analog, 200, 200, GxEPD_BLACK, GxEPD_WHITE);
 
             uint16_t minutenprozent = (WatchTime.Local.Minute/60)*100;
@@ -91,9 +91,8 @@ class AnalogWatchface : public WatchyGSR {
             drawHand(X, Y+1, hourAngle, 36);
 
             drawHand(X, Y, minuteAngle, 66);
-        }
       } else if (StyleID == styleA) {
-        a.draw(WatchTime.Local.Hour, WatchTime.Local.Minute, display);
+        a.draw(WatchTime.Local.Hour, WatchTime.Local.Minute, WatchyGSR::display);
       }
     };
 
