@@ -1,6 +1,6 @@
 #include "Watchy_GSR.h"
-//#include "../Watchface Addons/WeatherIcons.h"
-//#include "../Watchface Addons/Collections/Watchy Classics/WatchyClassicsAddOn.h"
+#include "../Watchface Addons/WeatherIcons.h"
+#include "../Watchface Addons/Collections/Watchy Classics/WatchyClassicsAddOn.h"
 #include "faces/AnalogFace.h"
 #include "faces/BinaryFace.h"
 
